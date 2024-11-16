@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador de Presupuesto</title>
+    <link href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="css.css" />
+  </head>
+  <body>
+    <h1>Simulador de Presupuesto Mensual</h1>
+    <p>
+      Arrastra las categorías de gasto a la canasta para calcular tu
+      presupuesto.
+    </p>
+
+    <div class="container">
+      <div id="categorias">
+        <div class="categoria" draggable="true">Renta</div>
+        <div class="categoria" draggable="true">Comida</div>
+        <div class="categoria" draggable="true">Transporte</div>
+        <div class="categoria" draggable="true">Entretenimiento</div>
+      </div>
+    </div>
+
+    <div class="cart">
+      <div id="canasta">
+        <p>Arrastra categorías aquí</p>
+      </div>
+    </div>
+
+    <div id="total">
+      <h3>Total del Presupuesto: $<span id="total-pagar">0.00</span></h3>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
