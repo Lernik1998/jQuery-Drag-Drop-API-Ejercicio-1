@@ -141,4 +141,52 @@ $(document).ready(function () {
       actualizarPrecio(-precioCategoriaBorrada);
     });
   });
+
+  $("#imprimirPresupuesto").on("click", function () {
+    // Creamos la ventana para la factura
+    let ventanaFactura = window.open(
+      "about:blank",
+      "_blank",
+      "width=600px,height=400px,left=100px,top=100px"
+    );
+    // Construimos el contenido HTML de la factura
+    let contenidoFactura = `
+    <h2>Factura de Presupuesto</h2>
+    <table border="1" style="width:100%; border-collapse:collapse; text-align:left;">
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th>Precio (€)</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+    // Iteramos sobre las categorías en la canasta
+    $(".canasta-item").each(function () {
+      let categoria = $(this).text().replace("Eliminar", "");
+      let precio = parseFloat($(this).attr("data-precio"));
+      contenidoFactura += `<tr>
+        <td>${categoria}</td>
+        <td>${precio}$</td>
+      </tr>`;
+    });
+
+    let totalPresupuesto = $("#total-pagar").text();
+
+    contenidoFactura += `
+       <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>${totalPresupuesto} €</strong></td>
+      </tr>
+    </tbody>
+    </table>
+      `;
+
+    // Escribimos dentro
+    ventanaFactura.document.write(`<body> ${contenidoFactura} </body>`);
+
+    // Configuramos cierre
+    setInterval(() => ventanaFactura.close(), 2000);
+  });
 });
